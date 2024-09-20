@@ -56,94 +56,99 @@ $pecah = $ambil->fetch_assoc();
 												<input type="text" class="form-control" name="judul" id="judul" required placeholder="Masukkan judul">
 											</div>
 										</div>
-										
+										<div class="col-md-12" style="color:red">
+													<label class="label">BIDANG KEAHLIAN</label>
+											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="label" for="a1">Teknik Elektro (a1)</label>
+													<label class="label" for="a1">Teknik Elektro (A1)</label>
 													<input type="double" class="form-control" name="a1" id="a1" required placeholder="Berupa angka 1 - 5">
 												</div>
 											</div>
 											<div class="col-md-6"> 
 												<div class="form-group">
-													<label class="label" for="a2">Teknologi Informasi (a2)</label>
+													<label class="label" for="a2">Teknologi Informasi (A2)</label>
 													<input type="double" class="form-control" name="a2" id="a2" required placeholder="Berupa angka 1 - 5">
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="label" for="a3">Ilmu Komputer (a3)</label>
+													<label class="label" for="a3">Ilmu Komputer (A3)</label>
 													<input type="double" class="form-control" name="a3" id="a3" required placeholder="Berupa angka 1 - 5">
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="label" for="a4">Cyber Security (a4)</label>
+													<label class="label" for="a4">Cyber Security (A4)</label>
 													<input type="double" class="form-control" name="a4" id="a4" required placeholder="Berupa angka 1 - 5">
 												</div>
 											</div>
+											<div class="col-md-12" style="color:red">
+													<label class="label">MATA KULIAH</label>
+											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="label" for="b1">Mobile Programming (b1)</label>
+													<label class="label" for="b1">Mobile Programming (B1)</label>
 													<input type="double" class="form-control" name="b1" id="b1" required placeholder="Berupa angka 1 - 5">
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="label" for="b2">Web Programming (b2)</label>
+													<label class="label" for="b2">Web Programming (B2)</label>
 													<input type="double" class="form-control" name="b2" id="b2" required placeholder="Berupa angka 1 - 5">
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="label" for="b3">Administrasi Database (b3)</label>
+													<label class="label" for="b3">Administrasi Database (B3)</label>
 													<input type="double" class="form-control" name="b3" id="b3" required placeholder="Berupa angka 1 - 5">
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="label" for="b4">Cyber Security (b4)</label>
+													<label class="label" for="b4">Cyber Security (B4)</label>
 													<input type="double" class="form-control" name="b4" id="b4" required placeholder="Berupa angka 1 - 5">
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="label" for="b5">Internet Of Thing (IoT) (b5)</label>
+													<label class="label" for="b5">Internet Of Thing (IoT) (B5)</label>
 													<input type="double" class="form-control" name="b5" id="b5" required placeholder="Berupa angka 1 - 5">
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="label" for="b6">Jaringan Komputer (b6)</label>
+													<label class="label" for="b6">Jaringan Komputer (B6)</label>
 													<input type="double" class="form-control" name="b6" id="b6" required placeholder="Berupa angka 1 - 5">
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="label" for="b7">Big Data (b7)</label>
+													<label class="label" for="b7">Big Data (B7)</label>
 													<input type="double" class="form-control" name="b7" id="b7" required placeholder="Berupa angka 1 - 5">
 												</div>
 											</div>		
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="label" for="b8">Machine Learning (b8)</label>
+													<label class="label" for="b8">Machine Learning (B8)</label>
 													<input type="double" class="form-control" name="b8" id="b8" required placeholder="Berupa angka 1 - 5">
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="label" for="b9">Manajemen Teknologi Informasi (b9)</label>
+													<label class="label" for="b9">Manajemen Teknologi Informasi (B9)</label>
 													<input type="double" class="form-control" name="b9" id="b9" required placeholder="Berupa angka 1 - 5">
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="label" for="b10">Software Engineering (b10)</label>
+													<label class="label" for="b10">Software Engineering (B10)</label>
 													<input type="double" class="form-control" name="b10" id="b10" required placeholder="Berupa angka 1 - 5">
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="label" for="b11">Rekayasa Perangkat Lunak (b11)</label>
+													<label class="label" for="b11">Rekayasa Perangkat Lunak (B11)</label>
 													<input type="double" class="form-control" name="b11" id="b11" required placeholder="Berupa angka 1 - 5">
 												</div>
 											</div>
