@@ -5,6 +5,11 @@
 
 <head>
 <?php include 'includes/head.php' ?>
+<style>
+        .bg-warning {
+            background-color: #FFD700; 
+        }
+    </style>
 </head>
 
 <body class="">
@@ -102,26 +107,43 @@
                     <tbody class="text-center">
                         <?php $nomor = 1; ?>
                         <?php $ambil = $koneksi->query("SELECT * FROM mahasiswa JOIN nilai_mahasiswa ON mahasiswa.id_mahasiswa=nilai_mahasiswa.id_mahasiswa ORDER BY id_nilai ASC"); ?>
-                        <?php while ($pecah = $ambil->fetch_assoc()) { ?>
+                        <?php while ($pecah = $ambil->fetch_assoc()) { 
+                           $is_a1_changed = isset($_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['a1']) && $_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['a1'] != $pecah['a1'];
+                           $is_a2_changed = isset($_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['a2']) && $_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['a2'] != $pecah['a2'];
+                           $is_a3_changed = isset($_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['a3']) && $_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['a3'] != $pecah['a3'];
+                           $is_a4_changed = isset($_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['a4']) && $_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['a4'] != $pecah['a4'];
+                           $is_b1_changed = isset($_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['b1']) && $_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['b1'] != $pecah['b1'];
+                           $is_b2_changed = isset($_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['b2']) && $_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['b2'] != $pecah['b2'];
+                           $is_b3_changed = isset($_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['b3']) && $_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['b3'] != $pecah['b3'];
+                           $is_b4_changed = isset($_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['b4']) && $_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['b4'] != $pecah['b4'];
+                           $is_b5_changed = isset($_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['b5']) && $_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['b5'] != $pecah['b5'];
+                           $is_b6_changed = isset($_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['b6']) && $_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['b6'] != $pecah['b6'];
+                           $is_b7_changed = isset($_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['b7']) && $_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['b7'] != $pecah['b7'];
+                           $is_b8_changed = isset($_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['b8']) && $_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['b8'] != $pecah['b8'];
+                           $is_b9_changed = isset($_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['b9']) && $_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['b9'] != $pecah['b9'];
+                           $is_b10_changed = isset($_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['b10']) && $_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['b10'] != $pecah['b10'];
+                           $is_b11_changed = isset($_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['b11']) && $_SESSION['nilai_sebelumnya'][$pecah['id_nilai']]['b11'] != $pecah['b11'];
+                          
+                          ?>
                         <tr>
                             <td><?php echo $nomor; ?></td>
                             <td><?php echo $pecah['nama']; ?></td>
                             <td><?php echo $pecah['judul']; ?></td>
-                            <td><?php echo $pecah['a1']; ?></td>
-                            <td><?php echo $pecah['a2']; ?></td>
-                            <td><?php echo $pecah['a3']; ?></td>
-                            <td><?php echo $pecah['a4']; ?></td>
-                            <td><?php echo $pecah['b1']; ?></td>
-                            <td><?php echo $pecah['b2']; ?></td>
-                            <td><?php echo $pecah['b3']; ?></td>
-                            <td><?php echo $pecah['b4']; ?></td>
-                            <td><?php echo $pecah['b5']; ?></td>
-                            <td><?php echo $pecah['b6']; ?></td>
-                            <td><?php echo $pecah['b7']; ?></td>
-                            <td><?php echo $pecah['b8']; ?></td>
-                            <td><?php echo $pecah['b9']; ?></td>
-                            <td><?php echo $pecah['b10']; ?></td>
-                            <td><?php echo $pecah['b11']; ?></td>
+                            <td class="<?php echo $is_a1_changed ? 'bg-warning' : ''; ?>"><?php echo $pecah['a1']; ?></td>
+                            <td class="<?php echo $is_a2_changed ? 'bg-warning' : ''; ?>"><?php echo $pecah['a2']; ?></td>
+                            <td class="<?php echo $is_a3_changed ? 'bg-warning' : ''; ?>"><?php echo $pecah['a3']; ?></td>
+                            <td class="<?php echo $is_a4_changed ? 'bg-warning' : ''; ?>"><?php echo $pecah['a4']; ?></td>
+                            <td class="<?php echo $is_b1_changed ? 'bg-warning' : ''; ?>"><?php echo $pecah['b1']; ?></td>
+                            <td class="<?php echo $is_b2_changed ? 'bg-warning' : ''; ?>"><?php echo $pecah['b2']; ?></td>
+                            <td class="<?php echo $is_b3_changed ? 'bg-warning' : ''; ?>"><?php echo $pecah['b3']; ?></td>
+                            <td class="<?php echo $is_b4_changed ? 'bg-warning' : ''; ?>"><?php echo $pecah['b4']; ?></td>
+                            <td class="<?php echo $is_b5_changed ? 'bg-warning' : ''; ?>"><?php echo $pecah['b5']; ?></td>
+                            <td class="<?php echo $is_b6_changed ? 'bg-warning' : ''; ?>"><?php echo $pecah['b6']; ?></td>
+                            <td class="<?php echo $is_b7_changed ? 'bg-warning' : ''; ?>"><?php echo $pecah['b7']; ?></td>
+                            <td class="<?php echo $is_b8_changed ? 'bg-warning' : ''; ?>"><?php echo $pecah['b8']; ?></td>
+                            <td class="<?php echo $is_b9_changed ? 'bg-warning' : ''; ?>"><?php echo $pecah['b9']; ?></td>
+                            <td class="<?php echo $is_b10_changed ? 'bg-warning' : ''; ?>"><?php echo $pecah['b10']; ?></td>
+                            <td class="<?php echo $is_b11_changed ? 'bg-warning' : ''; ?>"><?php echo $pecah['b11']; ?></td>
                             <td><a href="ubahdatanilai.php?id=<?php echo $pecah["id_nilai"] ?>"><button type="submit" class="btn btn-success btn-round"><i class="nc-icon nc-settings"></i></button></a>
                             <a href="hapusdatamahasiswa.php?id=<?php echo $pecah["id_nilai"] ?>"><button type="submit" class="btn btn-danger btn-round"><i class="nc-icon nc-basket"></i></button></a></td>
                         </tr>
