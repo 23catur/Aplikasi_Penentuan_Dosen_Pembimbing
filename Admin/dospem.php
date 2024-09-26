@@ -15,13 +15,9 @@
           <div class="logo-image-small">
             <img src="../images/pnup11.png" width="50px">
           </div>
-          <!-- <p>CT</p> -->
         </a>
         <a href="index.php" class="simple-text logo-normal">
           Penentuan DosPem
-          <!-- <div class="logo-image-big">
-            <img src="../assets/img/logo-big.png">
-          </div> -->
         </a>
       </div>
       <div class="sidebar-wrapper">

@@ -336,8 +336,8 @@ if (isset($_SESSION['user'])) {
                 $bobotb10 = getBobot($gapb10);
                 $bobotb11 = getBobot($gapb11);
 
-                $cf1 = (($bobota1 + $bobota2 + $bobota3 + $bobota4) / 2);
-                $cf2 = (($bobotb1 + $bobotb2 + $bobotb3 + $bobotb4 + $bobotb5 + $bobotb6 + $bobotb7 + $bobotb8 + $bobotb9 + $bobotb10 + $bobotb11) / 2);
+                $cf1 = ((floatval($bobota1) + floatval($bobota2) + floatval($bobota3) + floatval($bobota4)) / 2);
+                $cf2 = ((floatval($bobotb1) + floatval($bobotb2) + floatval($bobotb3) + floatval($bobotb4) + floatval($bobotb5) + floatval($bobotb6) + floatval($bobotb7) + floatval($bobotb8) + floatval($bobotb9) + floatval($bobotb10) + floatval($bobotb11)) / 2);
 
                 $n1 = $cf1;
                 $n2 = $cf2;
@@ -422,9 +422,21 @@ if (isset($_SESSION['user'])) {
                 $nama_dospem = $pecah['nama_dospem'];
 
                 date_default_timezone_set('Asia/Jakarta');
-                $tanggal = date("Y-m-d h:i");
-                $koneksi->query("INSERT INTO hasilhitung(id_mahasiswa, nama_dospem,hasil,tanggal) 
-                        VALUES('$id_mahasiswa','$nama_dospem','$rank','$tanggal')");
+$tanggal = date("Y-m-d h:i");
+
+$cekQuery = $koneksi->query("SELECT COUNT(*) as count FROM hasilhitung 
+                               WHERE id_mahasiswa = '$id_mahasiswa' 
+                               AND nama_dospem = '$nama_dospem' 
+                               AND hasil = '$rank'");
+$row = $cekQuery->fetch_assoc();
+
+if ($row['count'] == 0) {
+    $koneksi->query("INSERT INTO hasilhitung(id_mahasiswa, nama_dospem, hasil, tanggal) 
+                     VALUES('$id_mahasiswa', '$nama_dospem', '$rank', '$tanggal')");
+} else {
+    // echo "Data sudah ada di database.";
+}
+
               ?>
                 <tr>
                   <td><?php echo $nomor; ?></td>

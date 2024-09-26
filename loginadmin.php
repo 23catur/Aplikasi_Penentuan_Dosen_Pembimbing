@@ -4,13 +4,15 @@ include 'koneksi2.php';
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<?php include 'includes/header.php' ?>
-</head>
-<body>
-<?php include 'includes/navbar.php' ?>
 
-	
+<head>
+	<?php include 'includes/header.php' ?>
+</head>
+
+<body>
+	<?php include 'includes/navbar.php' ?>
+
+
 	<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');">
 		<div class="overlay"></div>
 		<div class="container">
@@ -48,7 +50,7 @@ include 'koneksi2.php';
 											</div>
 											<div class="col-md-12">
 												<div class="form-group">
-                                                    <button class="btn btn-primary btn-lg btn-block" type="submit" name="login">Login</button>
+													<button class="btn btn-primary btn-lg btn-block" type="submit" name="login">Login</button>
 
 													<p class="mb-4">User? <a href="loginuser.php"> Login berikut</a></p>
 												</div>
@@ -67,23 +69,28 @@ include 'koneksi2.php';
 				</div>
 			</div>
 		</div>
-    </section>
-    <?php
-  if (isset($_POST['login'])) {
-    $ambil = $koneksi->query("SELECT * FROM admin WHERE username='$_POST[username]' AND password = '$_POST[password]'");
-    $sama = $ambil->num_rows;
-    if ($sama == 1) {
-      $_SESSION['admin'] = $ambil->fetch_assoc();
-      echo "<div class='alert alert-info'>Login Sukses</div>";
-      echo "<meta http-equiv='refresh' content='1;url=Admin/index.php'>";
-    } else {
-      echo "<div class='alert alert-danger'>Login Gagal</div>";
-      echo "<meta http-equiv='refresh' content='1;url=loginadmin.php'>";
-    }
-  }
-  ?>
+	</section>
+	<?php
+	if (isset($_POST['login'])) {
+		$ambil = $koneksi->query("SELECT * FROM admin WHERE username='$_POST[username]' AND password = '$_POST[password]'");
+		$sama = $ambil->num_rows;
+		if ($sama == 1) {
+			$_SESSION['admin'] = $ambil->fetch_assoc();
+			echo "<div class='alert alert-info'>Login Sukses</div>";
+			echo "<meta http-equiv='refresh' content='1;url=Admin/index.php'>";
+		} else {
+			echo "<div class='alert alert-danger'>Login Gagal</div>";
+			echo "<meta http-equiv='refresh' content='1;url=loginadmin.php'>";
+		}
+	}
 
-    <?php include 'includes/footer.php' ?>
-    <?php include 'includes/loader.php' ?>
-	</body>
-	</html>
+	if (isset($_COOKIE['nilai_sebelumnya'])) {
+		$_SESSION['nilai_sebelumnya'] = json_decode($_COOKIE['nilai_sebelumnya'], true);
+	}
+	?>
+
+	<?php include 'includes/footer.php' ?>
+	<?php include 'includes/loader.php' ?>
+</body>
+
+</html>

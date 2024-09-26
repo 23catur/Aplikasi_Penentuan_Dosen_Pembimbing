@@ -42,7 +42,7 @@ $pecah = $ambil->fetch_assoc();
                                     Kriteria Bidang Keahlian : A <br>
                                     Kriteria Matakuliah : B <br>
                                 </p>
-                            </div>
+                            	</div>
 									<div class="col-md-4" style="padding-left: 0; margin-left: -350px;">
 										<img src="images/gap.png" alt="Deskripsi gambar" class="img-fluid" style="max-width: 130%; height: auto;">
 									</div>
@@ -50,13 +50,13 @@ $pecah = $ambil->fetch_assoc();
 							</div>
 									<form method="POST" >
 									<div class="row">
-										<div class="col-md-12">
+										<div class="col-md-12" style="color:black">
 											<div class="form-group">
 												<label class="label" for="judul">Judul</label>
 												<input type="text" class="form-control" name="judul" id="judul" required placeholder="Masukkan judul">
 											</div>
 										</div>
-										<div class="col-md-12" style="color:red">
+										<div class="col-md-12" style="color:black">
 													<label class="label">BIDANG KEAHLIAN</label>
 											</div>
 											<div class="col-md-6">
@@ -83,7 +83,7 @@ $pecah = $ambil->fetch_assoc();
 													<input type="double" class="form-control" name="a4" id="a4" required placeholder="Berupa angka 1 - 5">
 												</div>
 											</div>
-											<div class="col-md-12" style="color:red">
+											<div class="col-md-12" style="color:black">
 													<label class="label">MATA KULIAH</label>
 											</div>
 											<div class="col-md-6">

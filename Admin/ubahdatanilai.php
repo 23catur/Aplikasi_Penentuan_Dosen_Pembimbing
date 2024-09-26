@@ -4,6 +4,28 @@
 $ambil = $koneksi->query("SELECT * FROM nilai_mahasiswa JOIN mahasiswa ON nilai_mahasiswa.id_mahasiswa = mahasiswa.id_mahasiswa WHERE id_nilai='$_GET[id]'");
 $pecah = $ambil->fetch_assoc();
 
+if (!isset($_SESSION)) {
+    session_start();
+}
+if (!isset($_SESSION['nilai_sebelumnya'][$pecah['id_nilai']])) {
+    $_SESSION['nilai_sebelumnya'][$pecah['id_nilai']] = [
+        'a1' => $pecah['a1'],
+        'a2' => $pecah['a2'],
+        'a3' => $pecah['a3'],
+        'a4' => $pecah['a4'],
+        'b1' => $pecah['b1'],
+        'b2' => $pecah['b2'],
+        'b3' => $pecah['b3'],
+        'b4' => $pecah['b4'],
+        'b5' => $pecah['b5'],
+        'b6' => $pecah['b6'],
+        'b7' => $pecah['b7'],
+        'b8' => $pecah['b8'],
+        'b9' => $pecah['b9'],
+        'b10' => $pecah['b10'],
+        'b11' => $pecah['b11'],
+    ];
+}
 ?>
 
 <!DOCTYPE html>
@@ -14,55 +36,23 @@ $pecah = $ambil->fetch_assoc();
 </head>
 
 <body class="">
-  <div class="wrapper ">
+  <div class="wrapper">
     <div class="sidebar" data-color="white" data-active-color="danger">
-    <div class="logo">
+      <div class="logo">
         <a href="https://www.poliupg.ac.id/" class="simple-text logo-mini">
           <div class="logo-image-small">
             <img src="../images/pnup11.png" width="50px">
           </div>
-          <!-- <p>CT</p> -->
         </a>
-        
-        <a href="index.php" class="simple-text logo-normal">
-          Penentuan DosPem
-          <!-- <div class="logo-image-big">
-            <img src="./assets/img/oke.png">
-          </div> -->
-        </a>
+        <a href="index.php" class="simple-text logo-normal">Penentuan DosPem</a>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li >
-            <a href="./index.php">
-              <i class="nc-icon nc-bank"></i>
-              <p>Dashboard</p>
-            </a>
-          </li>
-          <li >
-            <a href="./dospem.php">
-              <i class="nc-icon nc-chart-pie-36"></i>
-              <p>Data DosPem</p>
-            </a>
-          </li>
-          <li class="active">
-            <a href="./datanilai.php">
-              <i class="nc-icon nc-user-run"></i>
-              <p>Data Mahasiswa</p>
-            </a>
-          </li>
-          <li>
-            <a href="./hasil.php">
-              <i class="nc-icon nc-box"></i>
-              <p>Riwayat Perhitungan</p>
-            </a>
-          </li>
-          <li class="active-pro">
-            <a href="./logout.php">
-              <i class="nc-icon nc-button-power"></i>
-              <p>Logout</p>
-            </a>
-          </li>
+          <li><a href="./index.php"><i class="nc-icon nc-bank"></i><p>Dashboard</p></a></li>
+          <li><a href="./dospem.php"><i class="nc-icon nc-chart-pie-36"></i><p>Data DosPem</p></a></li>
+          <li class="active"><a href="./datanilai.php"><i class="nc-icon nc-user-run"></i><p>Data Mahasiswa</p></a></li>
+          <li><a href="./hasil.php"><i class="nc-icon nc-box"></i><p>Riwayat Perhitungan</p></a></li>
+          <li class="active-pro"><a href="./logout.php"><i class="nc-icon nc-button-power"></i><p>Logout</p></a></li>
         </ul>
       </div>
     </div>
@@ -73,7 +63,10 @@ $pecah = $ambil->fetch_assoc();
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title">Ubah Data Nilai Mahasiswa</h4>
+                <h4 class="card-title">Ubah Data Nilai Mahasiswa
+                <img src="../images/gap.png" alt="Deskripsi gambar" class="img-fluid" style="width: 30%; margin-left: 50px;">
+
+                </h4>
               </div>
               <div class="card-body">
                 <form method="post" enctype="multipart/form-data">
@@ -88,64 +81,64 @@ $pecah = $ambil->fetch_assoc();
                         <input type="text" class="form-control" name="judul" required value="<?php echo $pecah['judul']; ?>">
                       </div>
                       <div class="form-group">
-                      <label>Teknik Elektro (a1)</label>
-                      <input type="number" class="form-control" name="a1" required value="<?php echo $pecah['a1']; ?>">
+                        <label>Teknik Elektro (a1)</label>
+                        <input type="number" class="form-control" name="a1" required value="<?php echo $pecah['a1']; ?>">
                       </div>
                       <div class="form-group">
-                      <label>Teknologi Informasi (a2)</label>
-                      <input type="number" class="form-control" name="a2" required value="<?php echo $pecah['a2']; ?>">
+                        <label>Teknologi Informasi (a2)</label>
+                        <input type="number" class="form-control" name="a2" required value="<?php echo $pecah['a2']; ?>">
                       </div>
                       <div class="form-group">
-                      <label>Ilmu Komputer (a3)</label>
-                      <input type="number" class="form-control" name="a3" required value="<?php echo $pecah['a3']; ?>">
+                        <label>Ilmu Komputer (a3)</label>
+                        <input type="number" class="form-control" name="a3" required value="<?php echo $pecah['a3']; ?>">
                       </div>
                       <div class="form-group">
-                      <label>Cyber Security (a4)</label>
-                      <input type="number" class="form-control" name="a4" required value="<?php echo $pecah['a4']; ?>">
+                        <label>Cyber Security (a4)</label>
+                        <input type="number" class="form-control" name="a4" required value="<?php echo $pecah['a4']; ?>">
                       </div>
                       <div class="form-group">
-                      <label>Mobile Programming (b1)</label>
-                      <input type="number" class="form-control" name="b1" required value="<?php echo $pecah['b1']; ?>">
+                        <label>Mobile Programming (b1)</label>
+                        <input type="number" class="form-control" name="b1" required value="<?php echo $pecah['b1']; ?>">
                       </div>
                       <div class="form-group">
-                      <label>Web Programming (b2)</label>
-                      <input type="number" class="form-control" name="b2" required value="<?php echo $pecah['b2']; ?>">
+                        <label>Web Programming (b2)</label>
+                        <input type="number" class="form-control" name="b2" required value="<?php echo $pecah['b2']; ?>">
                       </div>
                       <div class="form-group">
-                      <label>Administrasi Database (b3)</label>
-                      <input type="number" class="form-control" name="b3" required value="<?php echo $pecah['b3']; ?>">
+                        <label>Administrasi Database (b3)</label>
+                        <input type="number" class="form-control" name="b3" required value="<?php echo $pecah['b3']; ?>">
                       </div>
                       <div class="form-group">
-                      <label>Cyber Security (b4)</label>
-                      <input type="number" class="form-control" name="b4" required value="<?php echo $pecah['b4']; ?>">
+                        <label>Cyber Security (b4)</label>
+                        <input type="number" class="form-control" name="b4" required value="<?php echo $pecah['b4']; ?>">
                       </div>
                       <div class="form-group">
-                      <label>Internet Of Thing (IoT) (b5)</label>
-                      <input type="number" class="form-control" name="b5" required value="<?php echo $pecah['b5']; ?>">
+                        <label>Internet Of Thing (IoT) (b5)</label>
+                        <input type="number" class="form-control" name="b5" required value="<?php echo $pecah['b5']; ?>">
                       </div>
                       <div class="form-group">
-                      <label>Jaringan Komputer (b6)</label>
-                      <input type="number" class="form-control" name="b6" required value="<?php echo $pecah['b6']; ?>">
+                        <label>Jaringan Komputer (b6)</label>
+                        <input type="number" class="form-control" name="b6" required value="<?php echo $pecah['b6']; ?>">
                       </div>
                       <div class="form-group">
-                      <label>Big Data (b7)</label>
-                      <input type="number" class="form-control" name="b7" required value="<?php echo $pecah['b7']; ?>">
+                        <label>Big Data (b7)</label>
+                        <input type="number" class="form-control" name="b7" required value="<?php echo $pecah['b7']; ?>">
                       </div>
                       <div class="form-group">
-                      <label>Machine Learning (b8)</label>
-                      <input type="number" class="form-control" name="b8" required value="<?php echo $pecah['b8']; ?>">
+                        <label>Machine Learning (b8)</label>
+                        <input type="number" class="form-control" name="b8" required value="<?php echo $pecah['b8']; ?>">
                       </div>
                       <div class="form-group">
-                      <label>Manajemen Teknologi Informasi (b9)</label>
-                      <input type="number" class="form-control" name="b9" required value="<?php echo $pecah['b9']; ?>">
+                        <label>Manajemen Teknologi Informasi (b9)</label>
+                        <input type="number" class="form-control" name="b9" required value="<?php echo $pecah['b9']; ?>">
                       </div>
                       <div class="form-group">
-                      <label>Software Engineering (b10)</label>
-                      <input type="number" class="form-control" name="b10" required value="<?php echo $pecah['b10']; ?>">
+                        <label>Software Engineering (b10)</label>
+                        <input type="number" class="form-control" name="b10" required value="<?php echo $pecah['b10']; ?>">
                       </div>
                       <div class="form-group">
-                      <label>Rekayasa Perangkat Lunak (b11)</label>
-                      <input type="number" class="form-control" name="b11" required value="<?php echo $pecah['b11']; ?>">
+                        <label>Rekayasa Perangkat Lunak (b11)</label>
+                        <input type="number" class="form-control" name="b11" required value="<?php echo $pecah['b11']; ?>">
                       </div>
                     </div>
                   </div>
@@ -156,15 +149,19 @@ $pecah = $ambil->fetch_assoc();
                   </div>
                 </form>
 
-                <!-- database -->
                 <?php
                 if (isset($_POST['ubah'])) {
-                    $koneksi->query("UPDATE nilai_mahasiswa SET a1='$_POST[a1]', a2='$_POST[a2]', b1='$_POST[b1]', b2='$_POST[b2]', b3='$_POST[b3]', b4='$_POST[b4]', b5='$_POST[b5]', b6='$_POST[b6]', b7='$_POST[b7]', b8='$_POST[b8]', b9='$_POST[b9]', b10='$_POST[b10]', b11='$_POST[b11]' WHERE id_nilai='$_GET[id]'");
-                    echo "<script>alert('Data Nilai telah berhasil Diubah!');</script>";
+                    $koneksi->query("UPDATE nilai_mahasiswa SET 
+                        a1='$_POST[a1]', a2='$_POST[a2]', a3='$_POST[a3]', a4='$_POST[a4]', 
+                        b1='$_POST[b1]', b2='$_POST[b2]', b3='$_POST[b3]', b4='$_POST[b4]', 
+                        b5='$_POST[b5]', b6='$_POST[b6]', b7='$_POST[b7]', b8='$_POST[b8]', 
+                        b9='$_POST[b9]', b10='$_POST[b10]', b11='$_POST[b11]'
+                        WHERE id_nilai='$_GET[id]'");
+
+                    echo "<script>alert('Data berhasil diubah');</script>";
                     echo "<script>location='datanilai.php';</script>";
                 }
                 ?>
-
               </div>
             </div>
           </div>
@@ -173,7 +170,6 @@ $pecah = $ambil->fetch_assoc();
       <?php include 'includes/footer.php' ?>
     </div>
   </div>
-  <?php include 'includes/script.php' ?>
 </body>
 
 </html>
