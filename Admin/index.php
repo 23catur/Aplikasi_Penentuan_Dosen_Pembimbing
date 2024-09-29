@@ -1,10 +1,10 @@
-<?php include 'koneksi1.php'?>
+<?php include 'koneksi1.php' ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <?php include 'includes/head.php' ?>
+  <?php include 'includes/head.php' ?>
 </head>
 
 <body class="">
@@ -15,7 +15,6 @@
           <div class="logo-image-small">
             <img src="../images/pnup11.png" width="50px">
           </div>
-          <!-- <p>CT</p> -->
         </a>
         <a href="index.php" class="simple-text logo-normal">
           Penentuan DosPem
@@ -31,12 +30,23 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <li>
-            <a href="./dospem.php">
-              <i class="nc-icon nc-chart-pie-36"></i>
-              <p>Data DosPem</p>
-            </a>
-          </li>
+          
+          <?php if (isset($_SESSION['admin'])) { ?>
+            <li>
+              <a href="./dospem.php">
+                <i class="nc-icon nc-chart-pie-36"></i>
+                <p>Data DosPem</p>
+              </a>
+            </li>
+          <?php } elseif (isset($_SESSION['dosen'])) { ?>
+            <li>
+              <a href="./dosen.php">
+                <i class="nc-icon nc-chart-pie-36"></i>
+                <p>Data Dosen</p>
+              </a>
+            </li>
+          <?php } ?>
+
           <li>
             <a href="./datanilai.php">
               <i class="nc-icon nc-user-run"></i>
@@ -59,7 +69,7 @@
       </div>
     </div>
     <div class="main-panel">
-    <?php include 'includes/navbar.php' ?>
+      <?php include 'includes/navbar.php' ?>
       <div class="content">
         <div class="row">
           <div class="col-lg-3 col-md-6 col-sm-6">
@@ -75,9 +85,10 @@
                     <div class="numbers">
                       <?php $ambil = $koneksi->query("SELECT count(nama_dospem) as nama FROM dospem"); ?>
                       <?php while ($pecah = $ambil->fetch_assoc()) { ?>
-                      <p class="card-category">Dosen Pembimbing</p>
-                      <p class="card-title"><?php echo $pecah['nama']; ?><p>
-                      <?php } ?>
+                        <p class="card-category">Dosen Pembimbing</p>
+                        <p class="card-title"><?php echo $pecah['nama']; ?>
+                        <p>
+                        <?php } ?>
                     </div>
                   </div>
                 </div>
@@ -104,9 +115,10 @@
                     <div class="numbers">
                       <?php $ambil = $koneksi->query("SELECT count(id_mahasiswa) as mahasiswa FROM mahasiswa"); ?>
                       <?php while ($pecah = $ambil->fetch_assoc()) { ?>
-                      <p class="card-category">Mahasiswa</p>
-                      <p class="card-title"><?php echo $pecah['mahasiswa']; ?><p>
-                      <?php } ?>
+                        <p class="card-category">Mahasiswa</p>
+                        <p class="card-title"><?php echo $pecah['mahasiswa']; ?>
+                        <p>
+                        <?php } ?>
                     </div>
                   </div>
                 </div>
@@ -133,9 +145,10 @@
                     <div class="numbers">
                       <?php $ambil = $koneksi->query("SELECT count(id_mahasiswa) as mahasiswa FROM nilai_mahasiswa"); ?>
                       <?php while ($pecah = $ambil->fetch_assoc()) { ?>
-                      <p class="card-category">Nilai Mahasiswa</p>
-                      <p class="card-title"><?php echo $pecah['mahasiswa']; ?><p>
-                      <?php } ?>
+                        <p class="card-category">Nilai Mahasiswa</p>
+                        <p class="card-title"><?php echo $pecah['mahasiswa']; ?>
+                        <p>
+                        <?php } ?>
                     </div>
                   </div>
                 </div>
@@ -161,7 +174,8 @@
                   <div class="col-7 col-md-8">
                     <div class="numbers">
                       <p class="card-category">Program Studi</p>
-                      <p class="card-title">TKJ<p>
+                      <p class="card-title">TKJ
+                      <p>
                     </div>
                   </div>
                 </div>
@@ -185,9 +199,6 @@
               </div>
               <div class="card-footer ">
                 <hr>
-                <!-- <div class="stats">
-                  <i class="fa fa-history"></i> Updated 3 minutes ago
-                </div> -->
               </div>
             </div>
           </div>
@@ -199,7 +210,6 @@
   <?php include 'includes/script.php' ?>
   <script>
     $(document).ready(function() {
-      // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
       demo.initChartsPages();
     });
   </script>

@@ -63,7 +63,9 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title">Tambah Data Dosen Pembimbing</h4>
+                <h4 class="card-title">Tambah Data Dosen Pembimbing
+                <img src="../images/gap.png" alt="Deskripsi gambar" class="img-fluid" style="width: 30%; margin-left: 50px;">
+                </h4>
               </div>
               <div class="card-body">
                 <form method="post" enctype="multipart/form-data">
@@ -118,10 +120,10 @@
                         <label>Cyber Security (a4)</label>
                         <input type="number" class="form-control" name="ka4" required placeholder="Berisi angka 1-5">
                       </div>
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label>- (a5)</label>
-                        <input type="number" class="form-control" name="ka4" required placeholder="Berisi angka 1-5">
-                      </div>
+                        <input type="number" class="form-control" name="ka5" required placeholder="Berisi angka 1-5">
+                      </div> -->
                       <div class="form-group">
                         <label>Mobile Programming (b1)</label>
                         <input type="number" class="form-control" name="kb1" required placeholder="Berisi angka 1-5">
@@ -166,7 +168,7 @@
                         <label>Rekayasa Perangkat Lunak (b11)</label>
                         <input type="number" class="form-control" name="kb11" required placeholder="Berisi angka 1-5">
                       </div>
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label>- (b12)</label>
                         <input type="number" class="form-control" name="kb12" required placeholder="Berisi angka 1-5">
                       </div>
@@ -181,7 +183,7 @@
                       <div class="form-group">
                         <label>- (b15)</label>
                         <input type="number" class="form-control" name="kb15" required placeholder="Berisi angka 1-5">
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                   <div class="row">
@@ -197,9 +199,9 @@
                     $nama = $_FILES['foto']['name'];
                     $lokasi = $_FILES['foto']['tmp_name'];
                     move_uploaded_file($lokasi, "../foto_dospem/" . $nama);
-                    $koneksi->query("INSERT INTO dospem(nama_dospem,nomorhp,alamat,jabatan,foto,ka1,ka2,ka3,ka4,ka5, kb1,kb2,kb3,kb4,kb5,kb6,kb7,kb8,kb9,kb10,kb11,kb12,kb13,kb14,kb15) 
-                      VALUES('$_POST[nama]','$_POST[nomorhp]','$_POST[alamat]','$_POST[jabatan]','$nama','$_POST[ka1]','$_POST[ka2]','$_POST[ka3]','$_POST[ka4]','$_POST[ka5]','$_POST[kb1]',
-                      '$_POST[kb2]','$_POST[kb3]','$_POST[kb4]','$_POST[kb5]','$_POST[kb6]','$_POST[kb7]','$_POST[kb8]','$_POST[kb9]','$_POST[kb10]','$_POST[kb11]','$_POST[kb12]','$_POST[kb13]','$_POST[kb14]','$_POST[kb15]')");
+                    $koneksi->query("INSERT INTO dospem(nama_dospem,nomorhp,alamat,jabatan,foto,ka1,ka2,ka3,ka4,kb1,kb2,kb3,kb4,kb5,kb6,kb7,kb8,kb9,kb10,kb11) 
+                      VALUES('$_POST[nama]','$_POST[nomorhp]','$_POST[alamat]','$_POST[jabatan]','$nama','$_POST[ka1]','$_POST[ka2]','$_POST[ka3]','$_POST[ka4]','$_POST[kb1]',
+                      '$_POST[kb2]','$_POST[kb3]','$_POST[kb4]','$_POST[kb5]','$_POST[kb6]','$_POST[kb7]','$_POST[kb8]','$_POST[kb9]','$_POST[kb10]','$_POST[kb11]')");
                     echo "<div class='alert alert-info'>Data Tersimpan</div>";
                     echo "<meta http-equiv='refresh' content='1;url=dospem.php'>";
                 }

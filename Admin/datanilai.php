@@ -83,8 +83,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li><a href="./index.php"><i class="nc-icon nc-bank"></i><p>Dashboard</p></a></li>
-                    <li><a href="./dospem.php"><i class="nc-icon nc-chart-pie-36"></i><p>Data DosPem</p></a></li>
-                    <li class="active"><a href="./datanilai.php"><i class="nc-icon nc-user-run"></i><p>Data Mahasiswa</p></a></li>
+                    <?php if (isset($_SESSION['admin'])) { ?>
+            <li>
+              <a href="./dospem.php">
+                <i class="nc-icon nc-chart-pie-36"></i>
+                <p>Data DosPem</p>
+              </a>
+            </li>
+          <?php } elseif (isset($_SESSION['dosen'])) { ?>
+            <li>
+              <a href="./dosen.php">
+                <i class="nc-icon nc-chart-pie-36"></i>
+                <p>Data Dosen</p>
+              </a>
+            </li>
+          <?php } ?>                    <li class="active"><a href="./datanilai.php"><i class="nc-icon nc-user-run"></i><p>Data Mahasiswa</p></a></li>
                     <li><a href="./hasil.php"><i class="nc-icon nc-box"></i><p>Riwayat Perhitungan</p></a></li>
                     <li class="active-pro"><a href="./logout.php"><i class="nc-icon nc-button-power"></i><p>Logout</p></a></li>
                 </ul>

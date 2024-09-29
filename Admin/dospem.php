@@ -28,12 +28,21 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="active">
-            <a href="./dospem.php">
-              <i class="nc-icon nc-chart-pie-36"></i>
-              <p>Data DosPem</p>
-            </a>
-          </li>
+          <?php if (isset($_SESSION['admin'])) { ?>
+            <li class="active">
+              <a href="./dospem.php">
+                <i class="nc-icon nc-chart-pie-36"></i>
+                <p>Data DosPem</p>
+              </a>
+            </li>
+          <?php } elseif (isset($_SESSION['dosen'])) { ?>
+            <li>
+              <a href="./dosen.php">
+                <i class="nc-icon nc-chart-pie-36"></i>
+                <p>Data Dosen</p>
+              </a>
+            </li>
+          <?php } ?>
           <li>
             <a href="./datanilai.php">
               <i class="nc-icon nc-user-run"></i>
@@ -84,7 +93,7 @@
                       <th class="text-center">ka2</th>
                       <th class="text-center">ka3</th>
                       <th class="text-center">ka4</th>
-                      <th class="text-center">ka5</th>
+                      <!-- <th class="text-center">ka5</th> -->
                       <th class="text-center">kb1</th>
                       <th class="text-center">kb2</th>
                       <th class="text-center">kb3</th>
@@ -96,10 +105,10 @@
                       <th class="text-center">kb9</th>
                       <th class="text-center">kb10</th>
                       <th class="text-center">kb11</th>
-                      <th class="text-center">kb12</th>
+                      <!-- <th class="text-center">kb12</th>
                       <th class="text-center">kb13</th>
                       <th class="text-center">kb14</th>
-                      <th class="text-center">kb15</th>
+                      <th class="text-center">kb15</th> -->
                       <th class="text-center">Aksi</th>
                     </thead>
                     <tbody class="text-center">
@@ -117,7 +126,6 @@
                             <td><?php echo $pecah['ka2']; ?></td>
                             <td><?php echo $pecah['ka3']; ?></td>
                             <td><?php echo $pecah['ka4']; ?></td>
-                            <td><?php echo $pecah['ka5']; ?></td>
                             <td><?php echo $pecah['kb1']; ?></td>
                             <td><?php echo $pecah['kb2']; ?></td>
                             <td><?php echo $pecah['kb3']; ?></td>
@@ -129,10 +137,6 @@
                             <td><?php echo $pecah['kb9']; ?></td>
                             <td><?php echo $pecah['kb10']; ?></td>
                             <td><?php echo $pecah['kb11']; ?></td>
-                            <td><?php echo $pecah['kb12']; ?></td>
-                            <td><?php echo $pecah['kb13']; ?></td>
-                            <td><?php echo $pecah['kb14']; ?></td>
-                            <td><?php echo $pecah['kb15']; ?></td>
                             <td><a href="ubahdatadospem.php?id=<?php echo $pecah["id_dospem"] ?>"><button type="submit" class="btn btn-success btn-round"><i class="nc-icon nc-settings"></i></button></a>
                             <a href="hapusdatanilai.php?id=<?php echo $pecah["id_dospem"] ?>"><button type="submit" class="btn btn-danger btn-round"><i class="nc-icon nc-basket"></i></button></a></td>
                         </tr>

@@ -42,20 +42,20 @@ $pecah = $ambil->fetch_assoc();
             </a>
           </li>
           <li>
-            <a href="./hasil.php">
-              <i class="nc-icon nc-box"></i>
-              <p>Riwayat Perhitungan</p>
-            </a>
-          </li>
-          <li>
             <a href="./datanilai.php">
               <i class="nc-icon nc-user-run"></i>
               <p>Data Mahasiswa</p>
             </a>
           </li>
           <li>
+            <a href="./hasil.php">
+              <i class="nc-icon nc-box"></i>
+              <p>Riwayat Perhitungan</p>
+            </a>
+          </li>
+          <li class="active-pro">
             <a href="./logout.php">
-              <i class="nc-icon nc-money-coins"></i>
+              <i class="nc-icon nc-button-power"></i>
               <p>Logout</p>
             </a>
           </li>
@@ -69,7 +69,9 @@ $pecah = $ambil->fetch_assoc();
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title">Ubah Data Dosen Pembimbing</h4>
+                <h4 class="card-title">Ubah Data Dosen Pembimbing
+                <img src="../images/gap.png" alt="Deskripsi gambar" class="img-fluid" style="width: 30%; margin-left: 50px;">
+                </h4>
               </div>
               <div class="card-body">
                 <form method="post" enctype="multipart/form-data">
