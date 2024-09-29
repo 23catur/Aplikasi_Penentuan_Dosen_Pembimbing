@@ -1,35 +1,36 @@
-<?php 
-include 'koneksi.php'; 
+<?php
+include 'koneksi.php';
 
 if (!isset($_SESSION)) {
     session_start();
 }
 
-function checkChange($id, $field, $currentValue) {
+function checkChange($id, $field, $currentValue)
+{
     if (isset($_SESSION['nilai_sebelumnya'][$id][$field]) && $_SESSION['nilai_sebelumnya'][$id][$field] != $currentValue) {
-        return 'bg-warning';  
+        return 'bg-warning';
     }
-    return '';  
+    return '';
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $id_nilai = $_POST['id_nilai']; 
-    $nilai_a1 = $_POST['a1']; 
-    $nilai_a2 = $_POST['a2']; 
-    $nilai_a3 = $_POST['a3']; 
-    $nilai_a4 = $_POST['a4']; 
-    $nilai_b1 = $_POST['b1']; 
-    $nilai_b2 = $_POST['b2']; 
-    $nilai_b3 = $_POST['b3']; 
-    $nilai_b4 = $_POST['b4']; 
-    $nilai_b5 = $_POST['b5']; 
-    $nilai_b6 = $_POST['b6']; 
-    $nilai_b7 = $_POST['b7']; 
-    $nilai_b8 = $_POST['b8']; 
-    $nilai_b9 = $_POST['b9']; 
-    $nilai_b10 = $_POST['b10']; 
-    $nilai_b11 = $_POST['b11']; 
-   
+    $id_nilai = $_POST['id_nilai'];
+    $nilai_a1 = $_POST['a1'];
+    $nilai_a2 = $_POST['a2'];
+    $nilai_a3 = $_POST['a3'];
+    $nilai_a4 = $_POST['a4'];
+    $nilai_b1 = $_POST['b1'];
+    $nilai_b2 = $_POST['b2'];
+    $nilai_b3 = $_POST['b3'];
+    $nilai_b4 = $_POST['b4'];
+    $nilai_b5 = $_POST['b5'];
+    $nilai_b6 = $_POST['b6'];
+    $nilai_b7 = $_POST['b7'];
+    $nilai_b8 = $_POST['b8'];
+    $nilai_b9 = $_POST['b9'];
+    $nilai_b10 = $_POST['b10'];
+    $nilai_b11 = $_POST['b11'];
+
 
     $query = "UPDATE nilai_mahasiswa SET a1 = '$nilai_a1', a2 = '$nilai_a2', a3 = '$nilai_a3', a4 = '$nilai_a4'
     , b1 = '$nilai_b1', b2 = '$nilai_b2', b3 = '$nilai_b3', b4 = '$nilai_b4', b5 = '$nilai_b5', b6 = '$nilai_b6'
@@ -59,14 +60,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <?php include 'includes/head.php'; ?>
     <style>
         .bg-warning {
-            background-color: #FFD700 !important; 
+            background-color: #FFD700 !important;
         }
     </style>
 </head>
+
 <body class="">
     <div class="wrapper ">
         <div class="sidebar" data-color="white" data-active-color="danger">
@@ -82,24 +85,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                    <li><a href="./index.php"><i class="nc-icon nc-bank"></i><p>Dashboard</p></a></li>
-                    <?php if (isset($_SESSION['admin'])) { ?>
-            <li>
-              <a href="./dospem.php">
-                <i class="nc-icon nc-chart-pie-36"></i>
-                <p>Data DosPem</p>
-              </a>
-            </li>
-          <?php } elseif (isset($_SESSION['dosen'])) { ?>
-            <li>
-              <a href="./dosen.php">
-                <i class="nc-icon nc-chart-pie-36"></i>
-                <p>Data Dosen</p>
-              </a>
-            </li>
-          <?php } ?>                    <li class="active"><a href="./datanilai.php"><i class="nc-icon nc-user-run"></i><p>Data Mahasiswa</p></a></li>
-                    <li><a href="./hasil.php"><i class="nc-icon nc-box"></i><p>Riwayat Perhitungan</p></a></li>
-                    <li class="active-pro"><a href="./logout.php"><i class="nc-icon nc-button-power"></i><p>Logout</p></a></li>
+                    <li><a href="./index.php"><i class="nc-icon nc-bank"></i>
+                            <p>Dashboard</p>
+                        </a></li>
+
+                    <li>
+                        <a href="./dospem.php">
+                            <i class="nc-icon nc-chart-pie-36"></i>
+                            <p>Data Semua Dosen</p>
+                        </a>
+                    </li>
+                    <?php if (isset($_SESSION['dosen'])) { ?>
+                        <li>
+                            <a href="./dosen.php">
+                                <i class="nc-icon nc-chart-pie-36"></i>
+                                <p>Data Dosen</p>
+                            </a>
+                        </li>
+                    <?php } ?> <li class="active"><a href="./datanilai.php"><i class="nc-icon nc-user-run"></i>
+                            <p>Data Mahasiswa</p>
+                        </a></li>
+                    <li><a href="./hasil.php"><i class="nc-icon nc-box"></i>
+                            <p>Riwayat Perhitungan</p>
+                        </a></li>
+                    <li class="active-pro"><a href="./logout.php"><i class="nc-icon nc-button-power"></i>
+                            <p>Logout</p>
+                        </a></li>
                 </ul>
             </div>
         </div>
@@ -136,45 +147,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <th class="text-center">Aksi</th>
                                         </thead>
                                         <tbody class="text-center">
-                                            <?php 
-                                            $nomor = 1; 
+                                            <?php
+                                            $nomor = 1;
                                             $ambil = $koneksi->query("SELECT * FROM mahasiswa 
                                                                         JOIN nilai_mahasiswa 
                                                                         ON mahasiswa.id_mahasiswa = nilai_mahasiswa.id_mahasiswa 
                                                                         ORDER BY id_nilai ASC");
-                                            while ($pecah = $ambil->fetch_assoc()) { 
+                                            while ($pecah = $ambil->fetch_assoc()) {
                                             ?>
-                                            <tr>
-                                                <td><?php echo $nomor++; ?></td>
-                                                <td><?php echo $pecah['nama']; ?></td>
-                                                <td><?php echo $pecah['judul']; ?></td>
-                                                <?php 
-                                                for ($i = 1; $i <= 4; $i++) {
-                                                    $field = "a{$i}";
-                                                    echo "<td class='" . checkChange($pecah['id_nilai'], $field, $pecah[$field]) . "'>{$pecah[$field]}</td>";
-                                                }
-                                                for ($i = 1; $i <= 11; $i++) {
-                                                    $field = "b{$i}";
-                                                    echo "<td class='" . checkChange($pecah['id_nilai'], $field, $pecah[$field]) . "'>{$pecah[$field]}</td>";
-                                                }
-                                                ?>
-                                                <td>
-                                                    <a href="ubahdatanilai.php?id=<?php echo $pecah['id_nilai'] ?>">
-                                                        <button type="submit" class="btn btn-success btn-round">
-                                                            <i class="nc-icon nc-settings"></i>
-                                                        </button>
-                                                    </a>
-                                                    <a href="hapusdatamahasiswa.php?id=<?php echo $pecah['id_nilai'] ?>">
-                                                        <button type="submit" class="btn btn-danger btn-round">
-                                                            <i class="nc-icon nc-basket"></i>
-                                                        </button>
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                                <tr>
+                                                    <td><?php echo $nomor++; ?></td>
+                                                    <td><?php echo $pecah['nama']; ?></td>
+                                                    <td><?php echo $pecah['judul']; ?></td>
+                                                    <?php
+                                                    for ($i = 1; $i <= 4; $i++) {
+                                                        $field = "a{$i}";
+                                                        echo "<td class='" . checkChange($pecah['id_nilai'], $field, $pecah[$field]) . "'>{$pecah[$field]}</td>";
+                                                    }
+                                                    for ($i = 1; $i <= 11; $i++) {
+                                                        $field = "b{$i}";
+                                                        echo "<td class='" . checkChange($pecah['id_nilai'], $field, $pecah[$field]) . "'>{$pecah[$field]}</td>";
+                                                    }
+                                                    ?>
+                                                    <td>
+                                                        <?php if (isset($_SESSION['admin'])) {  ?>
+                                                            <a href="ubahdatanilai.php?id=<?php echo $pecah["id_nilai"] ?>">
+                                                                <button type="submit" class="btn btn-success btn-round"><i class="nc-icon nc-settings"></i></button>
+                                                            </a>
+                                                            <a href="hapusdatamahasiswa.php?id=<?php echo $pecah["id_nilai"] ?>">
+                                                                <button type="submit" class="btn btn-danger btn-round"><i class="nc-icon nc-basket"></i></button>
+                                                            </a>
+                                                        <?php } else { ?>
+                                                            <button type="button" class="btn btn-secondary btn-round" disabled><i class="nc-icon nc-settings"></i></button>
+                                                            <button type="button" class="btn btn-secondary btn-round" disabled><i class="nc-icon nc-basket"></i></button>
+                                                        <?php } ?>
+                                                    </td>
+                                                </tr>
                                             <?php } ?>
                                         </tbody>
                                     </table>
-                                </div> 
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -184,4 +196,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 </body>
+
 </html>

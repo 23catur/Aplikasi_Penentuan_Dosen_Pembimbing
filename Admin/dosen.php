@@ -5,6 +5,8 @@
 
 <head>
   <?php include 'includes/head.php' ?>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.0/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.0/dist/sweetalert2.min.js"></script>
 </head>
 
 <body class="">
@@ -28,14 +30,13 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <?php if (isset($_SESSION['admin'])) { ?>
             <li>
               <a href="./dospem.php">
                 <i class="nc-icon nc-chart-pie-36"></i>
-                <p>Data DosPem</p>
+                <p>Data Semua Dosen</p>
               </a>
             </li>
-          <?php } elseif (isset($_SESSION['dosen'])) { ?>
+          <?php if (isset($_SESSION['dosen'])) { ?>
             <li class="active">
               <a href="./dosen.php">
                 <i class="nc-icon nc-single-02"></i>
@@ -175,17 +176,27 @@
                       <button name="save" class="btn btn-primary mt-4">Simpan Data</button>
                     </form>
 
-
                     <?php
                     if (isset($_POST['save'])) {
                       $nama = $_FILES['foto']['name'];
                       $lokasi = $_FILES['foto']['tmp_name'];
                       move_uploaded_file($lokasi, "../foto_dospem/" . $nama);
-                      $koneksi->query("INSERT INTO dospem(nama_dospem,nomorhp,alamat,jabatan,foto,ka1,ka2,ka3,ka4,kb1,kb2,kb3,kb4,kb5,kb6,kb7,kb8,kb9,kb10,kb11) 
+
+                      $koneksi->query("INSERT INTO dospem(nama_dospem, nomorhp, alamat, jabatan, foto, ka1, ka2, ka3, ka4, kb1, kb2, kb3, kb4, kb5, kb6, kb7, kb8, kb9, kb10, kb11) 
                       VALUES('$_POST[nama]','$_POST[nomorhp]','$_POST[alamat]','$_POST[jabatan]','$nama','$_POST[ka1]','$_POST[ka2]','$_POST[ka3]','$_POST[ka4]','$_POST[kb1]',
                       '$_POST[kb2]','$_POST[kb3]','$_POST[kb4]','$_POST[kb5]','$_POST[kb6]','$_POST[kb7]','$_POST[kb8]','$_POST[kb9]','$_POST[kb10]','$_POST[kb11]')");
-                      echo "<div class='alert alert-info'>Data Tersimpan</div>";
-                      echo "<meta http-equiv='refresh' content='1;url=dosen.php'>";
+
+                      echo "<script>
+                        Swal.fire({
+                          title: 'Data Tersimpan!',
+                          text: 'Data dosen telah berhasil disimpan.',
+                          icon: 'success',
+                          showConfirmButton: false,
+                          timer: 2000
+                        });
+                      </script>";
+
+                      echo "<meta http-equiv='refresh' content='2;url=dosen.php'>";
                     }
                     ?>
                   </div>

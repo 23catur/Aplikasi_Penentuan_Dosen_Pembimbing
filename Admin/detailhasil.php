@@ -4,20 +4,20 @@
 <html lang="en">
 
 <head>
-    <?php include 'includes/head.php' ?>
-    <script src="../js/Chart.js"></script>
+  <?php include 'includes/head.php' ?>
+  <script src="../js/Chart.js"></script>
 </head>
 
 <body class="">
   <div class="wrapper ">
-  <div class="sidebar" data-color="white" data-active-color="danger">
+    <div class="sidebar" data-color="white" data-active-color="danger">
       <div class="logo">
         <a href="https://www.poliupg.ac.id/" class="simple-text logo-mini">
           <div class="logo-image-small">
             <img src="../images/pnup11.png" width="50px">
           </div>
         </a>
-        
+
         <a href="index.php" class="simple-text logo-normal">
           Penentuan DosPem
         </a>
@@ -30,12 +30,20 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="">
+          <li>
             <a href="./dospem.php">
               <i class="nc-icon nc-chart-pie-36"></i>
-              <p>Data DosPem</p>
+              <p>Data Semua Dosen</p>
             </a>
           </li>
+          <?php if (isset($_SESSION['dosen'])) { ?>
+            <li>
+              <a href="./dosen.php">
+                <i class="nc-icon nc-chart-pie-36"></i>
+                <p>Data Dosen</p>
+              </a>
+            </li>
+          <?php } ?>
           <li>
             <a href="./datanilai.php">
               <i class="nc-icon nc-user-run"></i>
@@ -58,7 +66,7 @@
       </div>
     </div>
     <div class="main-panel">
-    <?php include 'includes/navbar.php' ?>
+      <?php include 'includes/navbar.php' ?>
       <div class="content">
         <div class="row">
           <div class="col-md-12">
@@ -76,8 +84,8 @@
                       <th class="text-center">Nilai</th>
                     </thead>
                     <tbody>
-                      <?php 
-                      $nomor = 1; 
+                      <?php
+                      $nomor = 1;
                       $ambil = $koneksi->query("SELECT hasilhitung.*, dospem.jabatan 
                           FROM hasilhitung 
                           JOIN dospem ON dospem.nama_dospem = hasilhitung.nama_dospem 
@@ -85,17 +93,17 @@
                           ORDER BY hasilhitung.hasil DESC");
 
                       if (!$ambil) {
-                          die("Query Error: " . $koneksi->error);
+                        die("Query Error: " . $koneksi->error);
                       }
                       ?>
                       <?php while ($pecah = $ambil->fetch_assoc()) { ?>
-                      <tr>
-                        <td class="text-center"><?php echo $nomor; ?></td>
-                        <td class="text-center"><?php echo $pecah['nama_dospem']; ?></td>
-                        <td class="text-center"><?php echo $pecah['jabatan']; ?></td>
-                        <td class="text-center"><?php echo $pecah['hasil']; ?></td>
-                      </tr>
-                      <?php $nomor++; ?>
+                        <tr>
+                          <td class="text-center"><?php echo $nomor; ?></td>
+                          <td class="text-center"><?php echo $pecah['nama_dospem']; ?></td>
+                          <td class="text-center"><?php echo $pecah['jabatan']; ?></td>
+                          <td class="text-center"><?php echo $pecah['hasil']; ?></td>
+                        </tr>
+                        <?php $nomor++; ?>
                       <?php } ?>
                     </tbody>
                   </table>
@@ -103,8 +111,8 @@
               </div>
             </div>
 
-             <!-- Tabel Baru untuk Peringkat 1 dan 2 -->
-             <div class="card">
+            <!-- Tabel Baru untuk Peringkat 1 dan 2 -->
+            <div class="card">
               <div class="card-header">
                 <h4 class="card-title">Rekomendasi Dosen Pembimbing</h4>
               </div>
@@ -118,7 +126,7 @@
                       <th class="text-center">Nilai</th>
                     </thead>
                     <tbody>
-                      <?php 
+                      <?php
                       $peringkat_ambil = $koneksi->query("SELECT top_results.*, dospem.jabatan 
                                   FROM (
                                       SELECT * 
@@ -140,18 +148,18 @@
                                   ");
 
                       if (!$peringkat_ambil) {
-                          die("Query Error: " . $koneksi->error);
+                        die("Query Error: " . $koneksi->error);
                       }
 
                       $nomor = 1;
                       while ($peringkat = $peringkat_ambil->fetch_assoc()) { ?>
-                      <tr>
-                        <td class="text-center"><?php echo $nomor; ?></td>
-                        <td class="text-center"><?php echo $peringkat['nama_dospem']; ?></td>
-                        <td class="text-center"><?php echo $peringkat['jabatan']; ?></td>
-                        <td class="text-center"><?php echo $peringkat['hasil']; ?></td>
-                      </tr>
-                      <?php $nomor++; ?>
+                        <tr>
+                          <td class="text-center"><?php echo $nomor; ?></td>
+                          <td class="text-center"><?php echo $peringkat['nama_dospem']; ?></td>
+                          <td class="text-center"><?php echo $peringkat['jabatan']; ?></td>
+                          <td class="text-center"><?php echo $peringkat['hasil']; ?></td>
+                        </tr>
+                        <?php $nomor++; ?>
                       <?php } ?>
                     </tbody>
                   </table>

@@ -32,7 +32,7 @@
           <li>
             <a href="./dospem.php">
               <i class="nc-icon nc-chart-pie-36"></i>
-              <p>Data DosPem</p>
+              <p>Data Semua Dosen</p>
             </a>
           </li>
           <li class="active">

@@ -30,15 +30,14 @@
               <p>Dashboard</p>
             </a>
           </li>
-          
-          <?php if (isset($_SESSION['admin'])) { ?>
+
             <li>
               <a href="./dospem.php">
                 <i class="nc-icon nc-chart-pie-36"></i>
-                <p>Data DosPem</p>
+                <p>Data Semua Dosen</p>
               </a>
             </li>
-          <?php } elseif (isset($_SESSION['dosen'])) { ?>
+          <?php if (isset($_SESSION['dosen'])) { ?>
             <li>
               <a href="./dosen.php">
                 <i class="nc-icon nc-chart-pie-36"></i>

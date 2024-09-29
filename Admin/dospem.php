@@ -28,14 +28,13 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <?php if (isset($_SESSION['admin'])) { ?>
             <li class="active">
               <a href="./dospem.php">
                 <i class="nc-icon nc-chart-pie-36"></i>
-                <p>Data DosPem</p>
+                <p>Data Semua Dosen</p>
               </a>
             </li>
-          <?php } elseif (isset($_SESSION['dosen'])) { ?>
+          <?php if (isset($_SESSION['dosen'])) { ?>
             <li>
               <a href="./dosen.php">
                 <i class="nc-icon nc-chart-pie-36"></i>
@@ -77,8 +76,9 @@
               <div class="card-body">
                 <div class="col-md-8">
                     <div class="update ml-auto mr-auto">
-                        <a href="adddatadospem.php"> <button type="submit" class="btn btn-primary btn-round">Tambah Data Dosen Pembimbing</button></a>
-                    </div>
+                    <?php if (isset($_SESSION['admin'])) {  ?>
+                            <a href="adddatadospem.php"> <button type="submit" class="btn btn-primary btn-round">Tambah Data Dosen Pembimbing</button></a>
+                        <?php } ?>                    </div>
                 </div>
                 <div class="table-responsive">
                   <table class="table">
@@ -137,9 +137,20 @@
                             <td><?php echo $pecah['kb9']; ?></td>
                             <td><?php echo $pecah['kb10']; ?></td>
                             <td><?php echo $pecah['kb11']; ?></td>
-                            <td><a href="ubahdatadospem.php?id=<?php echo $pecah["id_dospem"] ?>"><button type="submit" class="btn btn-success btn-round"><i class="nc-icon nc-settings"></i></button></a>
-                            <a href="hapusdatanilai.php?id=<?php echo $pecah["id_dospem"] ?>"><button type="submit" class="btn btn-danger btn-round"><i class="nc-icon nc-basket"></i></button></a></td>
-                        </tr>
+                            <td>
+                            <?php if (isset($_SESSION['admin'])) {  ?>
+                              <a href="ubahdatadospem.php?id=<?php echo $pecah["id_dospem"] ?>">
+                                        <button type="submit" class="btn btn-success btn-round"><i class="nc-icon nc-settings"></i></button>
+                                    </a>
+                                    <a href="hapusdatanilai.php?id=<?php echo $pecah["id_dospem"] ?>">
+                                        <button type="submit" class="btn btn-danger btn-round"><i class="nc-icon nc-basket"></i></button>
+                                    </a>
+                                <?php } else { ?>
+                                    <button type="button" class="btn btn-secondary btn-round" disabled><i class="nc-icon nc-settings"></i></button>
+                                    <button type="button" class="btn btn-secondary btn-round" disabled><i class="nc-icon nc-basket"></i></button>
+                                <?php } ?>
+                            </td>
+                          </tr>
                         <?php $nomor++; ?>
                         <?php } ?>
                     </tbody>

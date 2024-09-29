@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>
-    <?php include 'includes/head.php' ?>
+  <?php include 'includes/head.php' ?>
 </head>
 
 <body class="">
@@ -15,14 +15,10 @@
           <div class="logo-image-small">
             <img src="../images/pnup11.png" width="50px">
           </div>
-          <!-- <p>CT</p> -->
         </a>
-        
+
         <a href="index.php" class="simple-text logo-normal">
           Penentuan DosPem
-          <!-- <div class="logo-image-big">
-            <img src="../assets/img/logo-big.png">
-          </div> -->
         </a>
       </div>
       <div class="sidebar-wrapper">
@@ -34,14 +30,13 @@
             </a>
           </li>
 
-          <?php if (isset($_SESSION['admin'])) { ?>
-            <li>
-              <a href="./dospem.php">
-                <i class="nc-icon nc-chart-pie-36"></i>
-                <p>Data DosPem</p>
-              </a>
-            </li>
-          <?php } elseif (isset($_SESSION['dosen'])) { ?>
+          <li>
+            <a href="./dospem.php">
+              <i class="nc-icon nc-chart-pie-36"></i>
+              <p>Data Semua Dosen</p>
+            </a>
+          </li>
+          <?php if (isset($_SESSION['dosen'])) { ?>
             <li>
               <a href="./dosen.php">
                 <i class="nc-icon nc-chart-pie-36"></i>
@@ -72,10 +67,10 @@
       </div>
     </div>
     <div class="main-panel">
-    <?php include 'includes/navbar.php' ?>
+      <?php include 'includes/navbar.php' ?>
       <div class="content">
         <div class="row">
-        <div class="col-md-12">
+          <div class="col-md-12">
             <div class="card">
               <div class="card-header">
                 <h4 class="card-title">Riwayat Perhitungan Mahasiswa</h4>
@@ -91,21 +86,25 @@
                       <th class="text-center">Aksi</th>
                     </thead>
                     <tbody class="text-center">
-                        <?php $nomor = 1; ?>
-                        <?php $ambil = $koneksi->query("SELECT mahasiswa.nama, hasilhitung.tanggal, nilai_mahasiswa.judul FROM mahasiswa JOIN hasilhitung ON mahasiswa.id_mahasiswa=hasilhitung.id_mahasiswa JOIN nilai_mahasiswa ON nilai_mahasiswa.id_mahasiswa = hasilhitung.id_mahasiswa GROUP BY tanggal"); ?>
-                        <?php while ($pecah = $ambil->fetch_assoc()) { ?>
+                      <?php $nomor = 1; ?>
+                      <?php $ambil = $koneksi->query("SELECT mahasiswa.nama, hasilhitung.tanggal, nilai_mahasiswa.judul FROM mahasiswa JOIN hasilhitung ON mahasiswa.id_mahasiswa=hasilhitung.id_mahasiswa JOIN nilai_mahasiswa ON nilai_mahasiswa.id_mahasiswa = hasilhitung.id_mahasiswa GROUP BY tanggal"); ?>
+                      <?php while ($pecah = $ambil->fetch_assoc()) { ?>
                         <tr>
-                            <td><?php echo $nomor; ?></td>
-                            <td><?php echo $pecah['tanggal']; ?></td>
-                            <td><?php echo $pecah['nama']; ?></td>
-                            <td><?php echo $pecah['judul']; ?></td>
-                            <td>
-                              <a href="detailhasil.php?tanggal=<?php echo $pecah["tanggal"] ?>"><button type="submit" class="btn btn-success btn-round"><i class="nc-icon nc-paper"></i></button></a>
+                          <td><?php echo $nomor; ?></td>
+                          <td><?php echo $pecah['tanggal']; ?></td>
+                          <td><?php echo $pecah['nama']; ?></td>
+                          <td><?php echo $pecah['judul']; ?></td>
+                          <td>
+                            <a href="detailhasil.php?tanggal=<?php echo $pecah["tanggal"] ?>"><button type="submit" class="btn btn-success btn-round"><i class="nc-icon nc-paper"></i></button></a>
+                            <?php if (isset($_SESSION['admin'])) {  ?>
                               <a href="hapushasilhitung.php?tanggal=<?php echo $pecah["tanggal"] ?>"><button type="submit" class="btn btn-danger btn-round"><i class="nc-icon nc-basket"></i></button></a>
-                            </td>
+                            <?php } else { ?>
+                              <button type="button" class="btn btn-secondary btn-round" disabled><i class="nc-icon nc-basket"></i></button>
+                            <?php } ?>
+                          </td>
                         </tr>
                         <?php $nomor++; ?>
-                        <?php } ?>
+                      <?php } ?>
                     </tbody>
                   </table>
                 </div>
