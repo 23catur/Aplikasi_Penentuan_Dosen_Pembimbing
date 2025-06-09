@@ -9,7 +9,7 @@
   <img src="https://img.shields.io/badge/PHP-8.x-777BB4?style=flat-square&logo=php&logoColor=white" />
   <img src="https://img.shields.io/badge/MySQL-Database-4479A1?style=flat-square&logo=mysql&logoColor=white" />
   <img src="https://img.shields.io/badge/Metode-WP-blueviolet?style=flat-square" />
-  <img src="https://img.shields.io/github/license/23catur/Aplikasi_Penentuan_Dosen_Pembimbing?style=flat-square" />
+  <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" />
 </p>
 
 ---
